@@ -1,12 +1,14 @@
 package json;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 /**
  * Created by Andrii_Rodionov on 1/3/2017.
  */
 public class JsonObject extends Json {
-    HashMap<String, Json> json = new HashMap<>();
+    private HashMap<String, Json> json = new HashMap<>();
 
     public JsonObject(JsonPair... jsonPairs) {
         for (JsonPair pair: jsonPairs) {
@@ -42,8 +44,9 @@ public class JsonObject extends Json {
     public JsonObject projection(String... names) {
         JsonObject newJson = new JsonObject();
         for (String name : names) {
-            if (json.containsKey(name))
+            if (json.containsKey(name)) {
                 newJson.add(new JsonPair(name, json.get(name)));
+            }
         }
 
         return newJson;

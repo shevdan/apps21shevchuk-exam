@@ -2,11 +2,9 @@ package domain;
 
 import json.*;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.function.Supplier;
+
 
 /**
  * Created by Andrii_Rodionov on 1/3/2017.
