@@ -10,9 +10,10 @@ import java.util.List;
  * Created by Andrii_Rodionov on 1/3/2017.
  */
 public class Student extends BasicStudent {
-    protected List<Tuple<String, Integer>> exam;
+    private List<Tuple<String, Integer>> exam;
 
-    public Student(String name, String surname, Integer year, Tuple<String, Integer>... exams) {
+    public Student(String name, String surname, Integer year,
+                   Tuple<String, Integer>... exams) {
         super(name, surname, year);
         this.exam = Arrays.asList(exams);
 
@@ -24,7 +25,10 @@ public class Student extends BasicStudent {
         JsonObject[] exams = new JsonObject[exam.size()];
         for (int i = 0; i < exam.size(); i++) {
             Tuple<String, Integer> tuple = exam.get(i);
-            exams[i] = createJsonObj(tuple.key, tuple.value);
+            exams[i] = new JsonObject();
+            exams[i].add(new JsonPair("course", new JsonString(tuple.key)));
+            exams[i].add(new JsonPair("mark", new JsonNumber(tuple.value)));
+            exams[i].add(new JsonPair("passed", new JsonBoolean(tuple.value > 2)));
         }
         json.add(new JsonPair("exams", new JsonArray(exams)));
 
@@ -32,13 +36,4 @@ public class Student extends BasicStudent {
         return json;
     }
 
-    private JsonObject createJsonObj(String name, Integer mark) {
-        JsonObject obj = new JsonObject();
-        obj.add(new JsonPair("course", new JsonString(name)));
-        obj.add(new JsonPair("mark", new JsonNumber(mark)));
-        obj.add(new JsonPair("passed", new JsonBoolean(mark > 2)));
-
-        return obj;
-
-    }
 }
