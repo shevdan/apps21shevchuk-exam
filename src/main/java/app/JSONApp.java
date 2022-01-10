@@ -38,11 +38,6 @@ public class JSONApp {
 
         JsonObject course1, course2, course3;
 
-        HashMap courses = new HashMap();
-        courses.put(1, new Object[]{"OOP", 3, true});
-        courses.put(2, new Object[] {"English", 5, true});
-        courses.put(3, new Object[] {"Math", 2, false});
-
         course1 = new JsonObject();
         course1.add(new JsonPair("course", new JsonString("OOP")));
         course1.add(new JsonPair("mark", new JsonNumber(3)));
