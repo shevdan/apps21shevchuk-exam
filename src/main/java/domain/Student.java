@@ -28,7 +28,8 @@ public class Student extends BasicStudent {
             exams[i] = new JsonObject();
             exams[i].add(new JsonPair("course", new JsonString(tuple.key)));
             exams[i].add(new JsonPair("mark", new JsonNumber(tuple.value)));
-            exams[i].add(new JsonPair("passed", new JsonBoolean(tuple.value > 2)));
+            exams[i].add(new JsonPair("passed",
+                    new JsonBoolean(tuple.value > 2)));
         }
         json.add(new JsonPair("exams", new JsonArray(exams)));
 
